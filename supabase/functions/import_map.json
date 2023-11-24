@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "og_edge": "https://deno.land/x/og_edge@0.0.4/mod.ts",
+    "react": "https://esm.sh/react@18.2.0",
+    "std/server": "https://deno.land/std@0.198.0/http/server.ts",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+  }
+}
