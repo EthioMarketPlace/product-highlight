@@ -5,7 +5,7 @@ import { corsHeaders } from "../_shared/cors.ts";
 
 const STORAGE_URL =
   "https://udizfftsmcgvomltkxyr.supabase.co/storage/v1/object/public/images/product-images";
-const EMP_LOGO = `${STORAGE_URL}/logo/emp_logo.jpg`;
+const EMP_LOGO = `${STORAGE_URL}/logo/emp_logo.png`;
 const date = new Date();
 const months = [
   "Jan",
@@ -27,8 +27,6 @@ export async function handler(req: Request) {
   const title = url.searchParams.get("title");
   const imgUrl = url.searchParams.get("imgUrl");
   const description = url.searchParams.get("description");
-  const price = url.searchParams.get("price");
-  const size = url.searchParams.get("size");
 
   try {
     const supabaseAdminClient = createClient(
@@ -39,56 +37,150 @@ export async function handler(req: Request) {
     const generatedImage = new ImageResponse(
       (
         <>
-          <div tw="flex h-full w-full flex-col items-start justify-start bg-white py-8">
-            <div tw="flex w-full justify-between mb-8 px-8">
-              <div tw="flex h-16 w-16">
-                <img tw="h-full w-full object-contain" src={EMP_LOGO} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              backgroundColor: "white",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              height: "100%",
+              width: "100%",
+              paddingTop: "4rem",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
+                marginBottom: "4rem",
+                paddingLeft: "4rem",
+                paddingRight: "4rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  height: "8rem",
+                  width: "16rem",
+                }}
+              >
+                <img
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                  }}
+                  src={EMP_LOGO}
+                />
               </div>
-              <span tw="text-xl text-[#832e31]">
+              <b
+                style={{
+                  fontSize: "3rem",
+                  color: "#832e31",
+                }}
+              >
                 {months[date.getMonth()]} {date.getDate()} |{" "}
                 {date.getFullYear()}
-              </span>
+              </b>
             </div>
-            <div tw="mb-8 flex items-center justify-start w-[75vw] bg-[#e0948c] py-2 px-8 rounded-r-lg">
-              <h2 tw="text-4xl font-bold text-[#832e31]">This Week Posts</h2>
+            <div
+              style={{
+                marginBottom: "4rem",
+                display: "flex",
+                width: "75vw",
+                backgroundColor: "#e0948c",
+                padding: "3rem",
+                borderRadius: "0 1rem 1rem 0",
+              }}
+            >
+              <b
+                style={{
+                  fontSize: "4rem",
+                  marginLeft: "1rem",
+                  color: "#832e31",
+                }}
+              >
+                Daily Product Highlights
+              </b>
             </div>
-            <div tw="mb-8 flex px-8">
-              <div tw="flex h-64 w-64">
+            <div
+              style={{
+                marginBottom: "4rem",
+                display: "flex",
+                paddingLeft: "4rem",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  height: "32rem",
+                  width: "32rem",
+                }}
+              >
                 <img
-                  tw="h-full w-full object-contain rounded-lg"
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    borderRadius: "1rem",
+                  }}
                   src={imgUrl!}
                 />
               </div>
-              <div tw="flex flex-col ml-8">
-                <span tw="text-3xl mb-2">{title}</span>
-                <p tw="mb-2">{description}</p>
-                <div tw="flex flex-col text-xl mb-2">
-                  <span tw="font-bold">Size</span>
-                  <span>{size}</span>
-                </div>
-                <div tw="flex flex-col text-xl">
-                  <span tw="font-bold">Price</span>
-                  <span>{price} Birr</span>
-                </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  fontStyle: "normal",
+                  color: "black",
+                  marginLeft: "4rem",
+                  width: "490px",
+                  whiteSpace: "pre-wrap",
+                }}
+              >
+                <b
+                  style={{
+                    fontSize: "4rem",
+                    marginBottom: "2rem",
+                  }}
+                >
+                  {title}
+                </b>
+                <p
+                  style={{
+                    fontSize: "2rem",
+                  }}
+                >
+                  {description}
+                </p>
               </div>
             </div>
-            <div tw="flex w-full items-center justify-center text-xl">
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "2.5rem",
+              }}
+            >
               <span>
-                Powered By <span tw="text-[#832e31]">@Ethio_Market_Place</span>
+                Powered By{" "}
+                <span
+                  style={{
+                    color: "#832e31",
+                  }}
+                >
+                  @Ethio_Market_Place
+                </span>
               </span>
             </div>
           </div>
         </>
       ),
       {
-        width: 600,
-        height: 600,
-        headers: {
-          "content-type": "image/png",
-          "cache-control":
-            "public, max-age=3600, s-maxage=3600, no-transform, immutable",
-          "cdn-cache-control": "max-age=3600",
-        },
+        width: 1200,
+        height: 1200,
       }
     );
 
