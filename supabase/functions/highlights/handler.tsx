@@ -36,147 +36,146 @@ export async function handler(req: Request) {
 
     const generatedImage = new ImageResponse(
       (
-        <>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: "white",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            height: "100%",
+            width: "100%",
+            paddingTop: "4rem",
+          }}
+        >
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              backgroundColor: "white",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-              height: "100%",
               width: "100%",
-              paddingTop: "4rem",
+              justifyContent: "space-between",
+              marginBottom: "4rem",
+              paddingLeft: "4rem",
+              paddingRight: "4rem",
             }}
           >
             <div
               style={{
                 display: "flex",
-                width: "100%",
-                justifyContent: "space-between",
-                marginBottom: "4rem",
-                paddingLeft: "4rem",
-                paddingRight: "4rem",
+                height: "8rem",
+                width: "16rem",
               }}
             >
-              <div
+              <img
                 style={{
-                  display: "flex",
-                  height: "8rem",
-                  width: "16rem",
+                  height: "100%",
+                  width: "100%",
                 }}
-              >
-                <img
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                  }}
-                  src={EMP_LOGO}
-                />
-              </div>
-              <b
-                style={{
-                  fontSize: "3rem",
-                  color: "#832e31",
-                }}
-              >
-                {months[date.getMonth()]} {date.getDate()} |{" "}
-                {date.getFullYear()}
-              </b>
+                src={EMP_LOGO}
+              />
             </div>
+            <p
+              style={{
+                fontSize: 45,
+                color: "#832e31",
+              }}
+            >
+              {months[date.getMonth()]} {date.getDate()} | {date.getFullYear()}
+            </p>
+          </div>
+          <div
+            style={{
+              marginBottom: "4rem",
+              display: "flex",
+              width: "75vw",
+              backgroundColor: "#e0948c",
+              padding: "3rem",
+              borderRadius: "0 1rem 1rem 0",
+            }}
+          >
+            <p
+              style={{
+                fontSize: 60,
+                marginLeft: "1rem",
+                color: "#832e31",
+                fontWeight: 700,
+              }}
+            >
+              <strong>Daily Product Highlights</strong>
+            </p>
+          </div>
+          <div
+            style={{
+              marginBottom: "4rem",
+              display: "flex",
+              paddingLeft: "4rem",
+            }}
+          >
             <div
               style={{
-                marginBottom: "4rem",
                 display: "flex",
-                width: "75vw",
-                backgroundColor: "#e0948c",
-                padding: "3rem",
-                borderRadius: "0 1rem 1rem 0",
+                height: "32rem",
+                width: "32rem",
               }}
             >
-              <b
+              <img
                 style={{
-                  fontSize: "4rem",
-                  marginLeft: "1rem",
-                  color: "#832e31",
+                  height: "100%",
+                  width: "100%",
+                  borderRadius: "1rem",
                 }}
-              >
-                Daily Product Highlights
-              </b>
-            </div>
-            <div
-              style={{
-                marginBottom: "4rem",
-                display: "flex",
-                paddingLeft: "4rem",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  height: "32rem",
-                  width: "32rem",
-                }}
-              >
-                <img
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                    borderRadius: "1rem",
-                  }}
-                  src={imgUrl!}
-                />
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  fontStyle: "normal",
-                  color: "black",
-                  marginLeft: "4rem",
-                  width: "490px",
-                  whiteSpace: "pre-wrap",
-                }}
-              >
-                <b
-                  style={{
-                    fontSize: "4rem",
-                    marginBottom: "2rem",
-                  }}
-                >
-                  {title}
-                </b>
-                <p
-                  style={{
-                    fontSize: "2rem",
-                  }}
-                >
-                  {description}
-                </p>
-              </div>
+                src={imgUrl!}
+              />
             </div>
             <div
               style={{
                 display: "flex",
-                width: "100%",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "2.5rem",
+                flexDirection: "column",
+                fontStyle: "normal",
+                color: "black",
+                marginLeft: "4rem",
+                width: "490px",
+                whiteSpace: "pre-wrap",
               }}
             >
-              <span>
-                Powered By{" "}
-                <span
-                  style={{
-                    color: "#832e31",
-                  }}
-                >
-                  @Ethio_Market_Place
-                </span>
-              </span>
+              <p
+                style={{
+                  fontSize: 60,
+                  marginBottom: "2rem",
+                  fontWeight: 700,
+                }}
+              >
+                <strong>{title}</strong>
+              </p>
+              <p
+                style={{
+                  fontSize: 30,
+                }}
+              >
+                {description}
+              </p>
             </div>
           </div>
-        </>
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 33.75,
+            }}
+          >
+            <span>
+              Powered By{" "}
+              <span
+                style={{
+                  color: "#832e31",
+                }}
+              >
+                @Ethio_Market_Place
+              </span>
+            </span>
+          </div>
+        </div>
       ),
       {
         width: 1200,
