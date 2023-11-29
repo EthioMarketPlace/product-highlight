@@ -8,10 +8,20 @@ This api is used to create highlight for products
 
 ```js
 const axios = require("axios");
+let data = JSON.stringify({
+  title: "catt",
+  description: "this",
+  imgUrl:
+    "https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg",
+});
 
 let config = {
-  method: "get",
-  url: "https://udizfftsmcgvomltkxyr.supabase.co/functions/v1/highlights?title=Cat&imgUrl=https://t4.ftcdn.net/jpg/02/66/72/41/360_F_266724172_Iy8gdKgMa7XmrhYYxLCxyhx6J7070Pr8.jpg&description=this cat is not for sell",
+  method: "post",
+  url: "https://udizfftsmcgvomltkxyr.supabase.co/functions/v1/highlights",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  data: data,
 };
 
 axios
@@ -26,7 +36,7 @@ axios
 
 ### Response
 
-    { "imgUrl":"https://udizfftsmcgvomltkxyr.supabase.co/storage/v1/object/public/images/product-images/Cat.png" }
+    { "imgUrl":"https://udizfftsmcgvomltkxyr.supabase.co/storage/v1/object/public/images/product-images/uuid.png", title: "uuid"}
 
 ## Delete Highlight
 
@@ -37,7 +47,7 @@ const axios = require("axios");
 
 let config = {
   method: "get",
-  url: "https://udizfftsmcgvomltkxyr.supabase.co/functions/v1/delete-highlight?title=Cat",
+  url: "https://udizfftsmcgvomltkxyr.supabase.co/functions/v1/delete-highlight?title=uuid",
 };
 
 axios
