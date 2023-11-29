@@ -23,10 +23,7 @@ const months = [
 ];
 
 export async function handler(req: Request) {
-  const url = new URL(req.url);
-  const title = url.searchParams.get("title");
-  const imgUrl = url.searchParams.get("imgUrl");
-  const description = url.searchParams.get("description");
+  const { title, description, imgUrl } = await req.json();
 
   try {
     const supabaseAdminClient = createClient(
