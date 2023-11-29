@@ -22,7 +22,25 @@ const months = [
   "Dec",
 ];
 
+const lightFont = fetch(`${STORAGE_URL}/fonts/Poppins-Light.ttf`).then((res) =>
+  res.arrayBuffer()
+);
+const regularFont = fetch(`${STORAGE_URL}/fonts/Poppins-Regular.ttf`).then(
+  (res) => res.arrayBuffer()
+);
+const boldFont = fetch(`${STORAGE_URL}/fonts/Poppins-Bold.ttf`).then((res) =>
+  res.arrayBuffer()
+);
+const blackFont = fetch(`${STORAGE_URL}/fonts/Poppins-Black.ttf`).then((res) =>
+  res.arrayBuffer()
+);
+
 export async function handler(req: Request) {
+  const lightFontData = await lightFont;
+  const regularFontData = await regularFont;
+  const boldFontData = await boldFont;
+  const blackFontData = await blackFont;
+
   const { title, description, imgUrl } = await req.json();
 
   try {
@@ -177,6 +195,32 @@ export async function handler(req: Request) {
       {
         width: 1200,
         height: 1200,
+        fonts: [
+          {
+            name: "Poppins",
+            data: lightFontData,
+            style: "normal",
+            weight: 300,
+          },
+          {
+            name: "Poppins",
+            data: regularFontData,
+            style: "normal",
+            weight: 400,
+          },
+          {
+            name: "Poppins",
+            data: boldFontData,
+            style: "normal",
+            weight: 700,
+          },
+          {
+            name: "Poppins",
+            data: blackFontData,
+            style: "normal",
+            weight: 900,
+          },
+        ],
       }
     );
 
