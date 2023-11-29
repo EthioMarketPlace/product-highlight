@@ -43,6 +43,8 @@ export async function handler(req: Request) {
 
   const { title, description, imgUrl } = await req.json();
 
+  const uuid = crypto.randomUUID();
+
   try {
     const supabaseAdminClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
@@ -226,7 +228,7 @@ export async function handler(req: Request) {
 
     const { error } = await supabaseAdminClient.storage
       .from("images")
-      .upload(`product-images/${title}.png`, generatedImage.body!, {
+      .upload(`product-images/${uuid}.png`, generatedImage.body!, {
         contentType: "image/png",
         cacheControl: "3600",
         upsert: true,
@@ -235,8 +237,13 @@ export async function handler(req: Request) {
     if (error) throw error;
     const supabaseUrl = supabaseAdminClient.storage
       .from("images")
-      .getPublicUrl(`product-images/${title}.png`);
-    return new Response(JSON.stringify({ imgUrl: supabaseUrl.data.publicUrl }));
+      .getPublicUrl(`product-images/${uuid}.png`);
+    return new Response(
+      JSON.stringify({
+        imgUrl: supabaseUrl.data.publicUrl,
+        title: uuid,
+      })
+    );
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
